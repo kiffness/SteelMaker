@@ -1,6 +1,8 @@
-package net.kiffness.steelmaker;
+package net.kiffness.steelworks;
 
 import com.mojang.logging.LogUtils;
+import net.kiffness.steelworks.item.ModCreativeModTabs;
+import net.kiffness.steelworks.item.ModItems;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -12,13 +14,17 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
-@Mod(SteelMakerMod.MOD_ID)
-public class SteelMakerMod {
+@Mod(SteelWorksMod.MOD_ID)
+public class SteelWorksMod {
     public static final String MOD_ID = "steelmaker";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public SteelMakerMod(FMLJavaModLoadingContext context) {
+    public SteelWorksMod(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
+
+        ModCreativeModTabs.register(modEventBus);
+
+        ModItems.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
     }
